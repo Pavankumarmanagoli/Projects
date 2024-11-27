@@ -1,0 +1,2 @@
+
+curl https://api.nextbike.net/maps/nextbike-live.json > nextbike.json
