@@ -16,7 +16,6 @@ This repository showcases a comprehensive data engineering project that focuses 
 - [🎯 Goals & Outcomes](#-goals--outcomes)
 - [📊 Future Work](#-future-work)
 - [💡 Tech Stack](#-tech-stack)
-- [👥 Team Contribution](#-team-contribution)
 - [📄 License](#-license)
 
 ---
