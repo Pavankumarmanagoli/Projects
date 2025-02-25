@@ -11,15 +11,7 @@ The core purpose of this dashboard is to bridge the gap between customer feedbac
 
 ## Story
 
-The **British Airways FlyInsights** Dashboard tells the story of customer journeys from March 2016 to October 2023. Through this timeline, we uncover patterns in passenger satisfaction, revealing the highs and lows of British Airways' service performance.
-
-The narrative starts with the **Average Overall Rating By Month**, where peaks and troughs highlight periods of customer delight and dissatisfaction. This view captures seasonal trends, operational impacts, and the influence of global events on customer sentiment.
-
-Moving to the **Average Overall Rating By Country**, the dashboard offers a geographical exploration of customer feedback. The heatmap reveals regional differences, shedding light on where British Airways is exceeding expectations and where improvements are needed.
-
-The **Average Overall Rating By Aircraft** provides a deeper dive into the impact of specific aircraft models on customer satisfaction. With the Boeing 747-400 leading with a 4.7 average rating, users can see how aircraft type influences passenger experiences.
-
-The dashboard’s interactive filters allow for further storytelling. Users can analyze specific service aspects—like seat comfort or food quality—compare traveler types, and focus on particular aircraft or regions to uncover nuanced insights.
+The **British Airways FlyInsights** Dashboard tells the story of customer journeys from March 2016 to October 2023. Through this timeline, we uncover patterns in passenger satisfaction, revealing the highs and lows of British Airways' service performance.The narrative starts with the **Average Overall Rating By Month**, where peaks and troughs highlight periods of customer delight and dissatisfaction. This view captures seasonal trends, operational impacts, and the influence of global events on customer sentiment.Moving to the **Average Overall Rating By Country**, the dashboard offers a geographical exploration of customer feedback. The heatmap reveals regional differences, shedding light on where British Airways is exceeding expectations and where improvements are needed.The **Average Overall Rating By Aircraft** provides a deeper dive into the impact of specific aircraft models on customer satisfaction. With the Boeing 747-400 leading with a 4.7 average rating, users can see how aircraft type influences passenger experiences.The dashboard’s interactive filters allow for further storytelling. Users can analyze specific service aspects—like seat comfort or food quality—compare traveler types, and focus on particular aircraft or regions to uncover nuanced insights.
 
 This story isn’t just about numbers—it’s about understanding passenger experiences and using data to create better journeys. Whether you’re a data analyst, an airline executive, or a curious traveler, this dashboard offers a clear window into British Airways' performance and areas for growth.
 
