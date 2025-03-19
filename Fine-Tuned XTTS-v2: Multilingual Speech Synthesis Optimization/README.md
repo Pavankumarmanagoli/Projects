@@ -11,15 +11,18 @@ This repository contains a fine-tuned version of **XTTS-v2**, optimized for **mu
 ✅ **Enhanced prosody control and expressiveness**  
 ✅ **Evaluation using MOS, UTMOS, SECS, and CER metrics**  
 
-## **Installation**
-### **1. Clone the Repository**
+## **Cloning This Repository**
+To clone this repository and start working with the fine-tuned XTTS-v2 model, run the following commands:
+
 ```bash
-git clone https://github.com/Pavankumarmanagoli
-Projects/XTTSv2-FineTune.git
-cd XTTSv2-FineTune
+git clone https://github.com/Pavankumarmanagoli/Projects.git
+cd "Projects/Fine-Tuned XTTS-v2: Multilingual Speech Synthesis Optimization"
 ```
 
-### **2. Install Dependencies**
+This will download the repository and navigate into the correct directory.
+
+## **Installation**
+### **1. Install Dependencies**
 Ensure you have Python 3.8+ installed, then run:
 ```bash
 pip install -r requirements.txt
@@ -52,7 +55,6 @@ Run the inference script to generate speech from text:
 ```bash
 python synthesize.py --text "Hello, welcome to the fine-tuned XTTS-v2 model!" --output output.wav
 ```
-
 
 ## **Future Work**
 📌 **Enhanced prosody control**: Fine-grained tuning for emotional expression.  
