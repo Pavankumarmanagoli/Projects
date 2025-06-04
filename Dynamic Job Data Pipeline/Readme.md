@@ -1,4 +1,4 @@
-# 📊 Data ELT Pipeline: Unlocking the Power of Data
+# 📊Ireland Job Market Analytics Pipeline
 
 This repository documents a comprehensive **ELT (Extract, Load, Transform)** pipeline for collecting, managing, and analyzing **job posting data** from various sources. The project showcases a fully automated and scalable data workflow that utilizes **Google BigQuery**, **dbt**, **Airflow**, and **Looker** for end-to-end data management and visualization.
 
