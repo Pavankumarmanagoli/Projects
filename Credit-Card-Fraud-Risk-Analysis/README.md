@@ -1,73 +1,38 @@
-# 💳 Power BI Project: Credit Card Fraud Risk Analysis | End-to-End Dashboard
+# 💳 Credit Card Fraud Risk Analysis – Power BI Project
 
-Fraud detection is a critical focus area for the banking and finance sectors. In this Power BI project, we dive into analyzing credit card transactions to uncover fraud patterns, assess risks, and build an interactive dashboard that supports real-time decision-making.
-
----
-
-## 🚀 Project Highlights
-
-In this project, you’ll learn how to:
-- 🧹 **Data Collection & Cleaning**: Prepare transactional data for fraud risk analysis.
-- 🔎 **Exploratory Data Analysis (EDA)**: Detect fraud trends, patterns, and anomalies.
-- 📊 **Build Interactive Dashboards**: Visualize fraud metrics with slicers, filters, and drill-downs.
-- 📈 **Risk Assessment Metrics**: Identify high-risk transactions and analyze fraud probability.
-- 🤖 **Predictive Insights**: Explore how banks can leverage BI and analytics for fraud prevention.
-- 🌍 **Real-World Applications**: Understand how financial institutions detect and combat fraud daily.
+Fraud detection is a growing challenge for banks and financial institutions as transaction volumes continue to rise. In this project, we analyze credit card transaction data to detect and assess fraud risk using Power BI. The dashboard provides a comprehensive view of fraud types, risk levels, and patterns across time, states, and merchant categories.
 
 ---
 
-## 🎥 Full Video Tutorial
+## 📊 Project Overview
 
-📺 [Watch the Full Tutorial Here](https://youtu.be/pR2P4JbLXEE)
+This Power BI project demonstrates how financial institutions can leverage business intelligence to monitor, detect, and respond to credit card fraud. The solution includes data cleaning, exploratory data analysis (EDA), and the development of an interactive dashboard to help analysts identify high-risk transactions and fraud hotspots.
 
----
+Using various filters and visualizations, the dashboard offers deep insights into fraudulent behavior across multiple dimensions such as fraud type, transaction category, state, and time of year. It is designed to support both high-level monitoring and detailed drill-down analysis for operational teams.
 
-## 🛠 Getting Started
+-
 
-To work on this project:
-1. **Clone or fork** this repository.
-2. Open the `.pbix` file with **Power BI Desktop**.
-3. Download the provided dataset or connect your own credit card transaction data.
-4. Follow the tutorial to build your fraud detection dashboard step-by-step.
+## ✅ Key Features
 
-📥 **Download Dataset & Resources Here**: [Add Link]
+- **Fraud Summary Metrics**:  
+  - Fraud Rate  
+  - Number of Fraudulent Transactions  
+  - Critical Risk Transactions  
+  - Total Value of Fraudulent Transactions  
+  - Most Frequent Fraud Type  
 
----
-
-## 🎯 Who Should Use This Project?
-
-- 🧑‍💻 **Data Analysts** & **Power BI Enthusiasts** building real-world projects
-- 🏦 **Banking & Finance Professionals** improving fraud prevention strategies
-- 🎓 **Students & Beginners** learning Power BI & financial analytics
-- 📊 **Business Intelligence Experts** enhancing financial data visualization skills  
-
----
-
-## 📢 Stay Connected
-
-👍 Like the video if it helped you!  
-💬 Comment your thoughts or questions under the tutorial!  
-🔔 Subscribe to the channel for more Power BI tutorials, data projects, and BI techniques.
+- **Interactive Visualizations**:
+  - **Fraud Type vs Transaction Category** (Bar chart)
+  - **Risk Level Distribution** (Donut chart)
+  - **Fraud by State** (Bar chart)
+  - **Fraud by Month** (Line chart)
+  
+- **Filter Panel**:  
+  Allows users to explore fraud data by:
+  - Fraud Type  
+  - State  
+  - Merchant Name
 
 ---
 
-## 🌐 Visit Pianalytix for More Resources
-
-🔗 **Website**: [https://pianalytix.com](https://pianalytix.com)  
-Explore 300+ hands-on Data Science, Power BI, and Development projects.
-
----
-
-## 📲 Connect with Pianalytix:
-
-✅ **Instagram**: [@pianalytix.official](https://www.instagram.com/pianalytix.official/)  
-✅ **LinkedIn**: [Pianalytix](https://www.linkedin.com/company/pianalytix/)  
-✅ **YouTube**: [@pianalytixofficial](https://m.youtube.com/@pianalytixofficial)
-
----
-
-## 📘 Explore Our Udemy Courses:
-
-- 📌 [Build 45 Real-World Power BI Projects for BI & Data Analysts](https://www.udemy.com/course/data-analytics-course-power-bi-tableau/?couponCode=NOV2024)  
-- 📌 [Data Science Bundle: 180 Hands-On Projects](https://www.udemy.com/course/data-science-projects-mastering-the-real-life-analytics/?couponCode=NOV2024)  
-- 📌 [100 Days of Code: Real-World Data Science Projects Bootcamp](https://www.udemy.com/course/hands-on-data-science-build-real-world-projects/?couponCode=NOV2024)
+This project is a real-world example of how Power BI can be used in the banking sector for risk analysis and fraud prevention. It highlights the power of visual analytics in understanding transactional anomalies and making data-driven decisions to safeguard financial systems.
