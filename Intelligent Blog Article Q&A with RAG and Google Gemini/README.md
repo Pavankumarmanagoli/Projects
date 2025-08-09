@@ -1,84 +1,36 @@
-# 📄 Retrieval-Augmented Generation (RAG) with Web Scraping and Gemini
+# Intelligent Blog Article Q&A with RAG and Google Gemini
 
-## 📘 Project Overview
-This project demonstrates a full **Retrieval-Augmented Generation (RAG)** pipeline built using **LangChain**, **Google's Gemini 1.5 Pro model**, and **web scraping with BeautifulSoup**. The system dynamically fetches web content, embeds it using Google's `embedding-001` model, stores the vectors in a Chroma vector store, and uses semantic search to feed relevant data to Gemini for generating accurate, context-aware answers.
+## Overview
+This project showcases a retrieval-augmented generation (RAG) pipeline that answers questions about a technical blog post. The system scrapes the article, indexes it in a vector store, and uses Google's Gemini 1.5 Pro to produce grounded responses.
 
-## 🎯 Objective
-To enable real-time question answering over a live blog or article by:
-- Extracting web content dynamically,
-- Storing it in an embedding-based vector database,
-- Using LangChain's retrieval chain to fetch relevant context,
-- And generating intelligent responses with Google's Gemini model.
+## Features
+- Automated web scraping and cleaning of blog content
+- Text chunking and embedding with Google Generative AI `embedding-001`
+- Semantic retrieval using a Chroma vector store
+- Context-aware answer generation through LangChain and Gemini
+- Jupyter notebook demonstrating the end-to-end workflow
 
-## 🔍 What is RAG?
-**Retrieval-Augmented Generation (RAG)** enhances language models by combining:
-- **Retrieval**: Bring in up-to-date external knowledge.
-- **Generation**: Use LLMs like Gemini to produce well-informed outputs.
+## Architecture
+1. **Web Scraping** – `WebBaseLoader` retrieves and parses the target article with BeautifulSoup.
+2. **Chunking & Embedding** – `RecursiveCharacterTextSplitter` prepares text for `GoogleGenerativeAIEmbeddings`.
+3. **Vector Store** – Chroma stores embeddings for similarity search.
+4. **Retrieval & Generation** – Relevant chunks are fetched via LangChain and supplied to Gemini-1.5-Pro.
+5. **Question Answering** – Gemini generates responses grounded in the retrieved context.
 
-Instead of relying solely on the LLM’s internal memory, RAG fetches information from vector stores (based on real content like websites), significantly improving accuracy and recency.
+## Getting Started
 
----
+### Prerequisites
+- Python 3.10+
+- Google API key
+- LangChain API key (optional for tracing)
 
-## 🧠 Technologies Used
-- **LangChain** (chains, loaders, memory, prompt templates)
-- **LangChain Community + Hub**
-- **Chroma Vector Store** – semantic document storage and retrieval
-- **Google Generative AI**:
-  - Gemini-1.5-Pro (Text Generation)
-  - Embedding-001 (Text Embedding)
-- **BeautifulSoup4** – for parsing and extracting clean HTML content
-- **WebBaseLoader** – from LangChain, using `bs4` internally
-- **Python** – requests, os, and utility libraries
-
----
-
-## 🔧 How the Pipeline Works
-
-### 1. 🧹 Web Scraping
-- Uses `WebBaseLoader` to scrape content from:
-  - https://lilianweng.github.io/posts/2023-06-23-agent/
-- Filters and extracts meaningful sections like title and blog content using BeautifulSoup.
-
-### 2. 📚 Text Chunking & Embedding
-- Splits raw content into chunks using `RecursiveCharacterTextSplitter`.
-- Embeds each chunk using `GoogleGenerativeAIEmbeddings`.
-
-### 3. 🧠 Semantic Storage & Retrieval
-- Stores embeddings in **Chroma**.
-- At query time, retrieves relevant chunks based on user input.
-
-### 4. 🤖 Response Generation
-- Uses Gemini-1.5-Pro to generate intelligent responses using retrieved chunks as context.
-- Fully powered by **LangChain retrieval chains** and **prompt templates**.
-
----
-
-## 🧪 Example: How It Works
-
-```python
-from langchain_google_genai import ChatGoogleGenerativeAI
-model = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
-response = model.invoke("What is this article about?")
-print(response.content)
-```
-
-- **User Query**: "What are autonomous agents?"
-- **System Action**:
-  - Scrapes article
-  - Finds relevant sections
-  - Uses Gemini to answer with grounded context
-
----
-
-## ⚙️ Installation
+### Installation
 ```bash
 pip install --upgrade langchain langchain-community langchainhub langchain-chroma beautifulsoup4
 pip install -q langchain_google_genai
 ```
 
----
-
-## 🛠️ Environment Setup
+### Environment Variables
 ```python
 import os
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
@@ -88,35 +40,25 @@ os.environ["GOOGLE_API_KEY"] = "your_google_api_key"
 os.environ["LANGCHAIN_PROJECT"] = "RAG"
 ```
 
----
+### Run the Demo
+Open `RAG_Project.ipynb` and execute the cells to scrape the article, build the vector store, and query the model:
+```python
+from langchain_google_genai import ChatGoogleGenerativeAI
+model = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
+response = model.invoke("What is this article about?")
+print(response.content)
+```
 
-## 📌 Reference Source
-This RAG pipeline uses the following article as its dynamic knowledge source:
+## Reference
+Source article: [Lil’Log – "LLMs as Agents" by Lilian Weng](https://lilianweng.github.io/posts/2023-06-23-agent/)
 
-🔗 [Lil’Log – “LLMs as Agents” by Lilian Weng](https://lilianweng.github.io/posts/2023-06-23-agent/)
+## Future Work
+- Support multiple articles and document types
+- Integrate a user interface for interactive queries
+- Deploy as a web service
 
-This blog post provides deep insights into autonomous agents, planning strategies, memory modules, and more. The system scrapes and indexes this content so users can query:
-- “What is the role of a memory module in an agent?”
-- “How does the agent loop work?”
-- “Summarize the different types of planning agents discussed.”
+## Contributing
+Contributions are welcome. Please open an issue or submit a pull request.
 
----
-
-## 🚀 Outcome
-This project allows users to:
-- Scrape live articles
-- Ask questions based on that content
-- Get detailed and accurate answers
-- All powered by retrieval + generation using Gemini
-
-It can be extended to support multiple sites, PDFs, user uploads, or real-time knowledge base creation.
-
----
-
-## 🤝 Contributing
-Contributions are welcome! Feel free to fork the repo, make changes, and submit a pull request.
-
-## 📄 License
-This project is licensed under the **MIT License**.
-
-
+## License
+This project is released under the MIT License.
