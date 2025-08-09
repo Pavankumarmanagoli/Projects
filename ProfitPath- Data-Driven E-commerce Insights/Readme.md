@@ -1,5 +1,6 @@
 # 📖 ProfitPath: Data-Driven E-commerce Insights
-ProfitPath explores how an online retailer can transform raw transaction data into meaningful, business‑ready intelligence. The project demonstrates an end‑to‑end exploratory data analysis (EDA).
+ProfitPath explores how an online retailer can transform raw transaction data into meaningful,
+business‑ready intelligence. The project demonstrates an end‑to‑end exploratory data analysis (EDA).
 
 ## Overview
 - **Objective:** uncover sales patterns and profitability drivers to support data‑informed decisions.
