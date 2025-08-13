@@ -1,172 +1,118 @@
-# 📊Ireland Job Market Analytics Pipeline
+# Dynamic Job Data Pipeline
 
-This repository documents a comprehensive **ELT (Extract, Load, Transform)** pipeline for collecting, managing, and analyzing **job posting data** from various sources. The project showcases a fully automated and scalable data workflow that utilizes **Google BigQuery**, **dbt**, **Airflow**, and **Looker** for end-to-end data management and visualization.
+A production-ready pipeline for collecting and analyzing job postings for the Irish market. The workflow ingests data from The Muse public API and historical JSON feeds, loads it into Google Cloud storage, cleans and transforms it with Apache Spark and dbt, and orchestrates daily and batch operations through Apache Airflow.
 
----
+## Objective
 
-## 📚 Table of Contents
-
-- [🚀 Project Overview](#-project-overview)
-- [🗄️ Data Sources](#️-data-sources)
-- [⚙️ Environment Setup](#️-environment-setup)
-- [🔄 ELT Process](#-elt-process)
-- [💾 Data Warehouse & Transformation](#-data-warehouse--transformation)
-- [📈 Data Visualization](#-data-visualization)
-- [⏰ Automation with Airflow](#-automation-with-airflow)
-- [🎯 Goals & Outcomes](#-goals--outcomes)
-- [💡 Tech Stack](#-tech-stack)
-- [📄 License](#-license)
+Originally built to streamline labour-market research in Ireland, this project automates the collection of live and historical job postings, standardises their schemas, and loads them into BigQuery. The curated dataset enables analysts and engineers to track hiring trends, assess skill demand, and build dashboards without manual data wrangling.
 
 ---
 
-## 🚀 Project Overview
-
-The primary objective of this project is to design and implement a **cloud-based, fully automated ELT pipeline** for processing and analyzing job postings data. The pipeline extracts data from **APIs** and **static datasets**, loads it into **BigQuery**, transforms it using **dbt**, and visualizes insights using **Looker**.
-
-**✨ Key Features:**
-- **Real-time & Historical Job Data Extraction**
-- **Automated ELT Pipeline using Airflow**
-- **Cloud-based Data Storage & Transformation (BigQuery, dbt)**
-- **Interactive Dashboards (Looker)**
-
----
-
-## 🗄️ Data Sources
-
-The ELT pipeline integrates data from the following sources:
-
-### 📡 **APIs:**
-- **The Muse API** — Real-time job postings  
-  - API Endpoint: `GET https://www.themuse.com/api/public/jobs`
-
-### 📁 **Static Datasets:**
-- **Job Data Feeds** — Historical job postings since 2020  
-  - Dataset: [Job Data Overview](https://jobdatafeeds.com/job-data-overview)  
-  - Format: **JSON**
-
-### 📊 **Data Collected:**
-- Job Titles
-- Company Details
-- Location
-- Job Descriptions
-- Posting Dates
-- Historical Job Trends
+## Table of Contents
+- [Objective](#objective)
+- [Architecture](#architecture)
+- [Quick Start](#quick-start)
+- [Pipeline Components](#pipeline-components)
+  - [Airbyte](#airbyte)
+  - [Airflow](#airflow)
+  - [Spark](#spark)
+- [Project Layout](#project-layout)
+- [Technology Stack](#technology-stack)
+- [License](#license)
 
 ---
 
-## ⚙️ Environment Setup
-
-The environment was designed for scalability, automation, and data integrity.
-
-1. **Google Cloud Platform (GCP)** — Hosted BigQuery and storage buckets.
-2. **dbt** — Managed SQL-based data transformations in BigQuery.
-3. **Airflow** — Automated data extraction, loading, and transformation jobs.
-4. **Looker** — Used for data visualization and dashboarding.
+## Architecture
+1. **Ingestion** – Airbyte and custom HTTP tasks pull job postings from the Muse API and from historical datasets.
+2. **Storage** – Raw JSON files are stored in Google Cloud Storage and then loaded into BigQuery.
+3. **Transformation** – dbt models and Spark jobs standardise the schema, generate surrogate keys and remove invalid characters.
+4. **Orchestration** – Airflow schedules daily incremental loads and historic backfills.
+5. **Visualisation** – Processed data can be explored in downstream BI tools such as Looker or Data Studio.
 
 ---
 
-## 🔄 ELT Process
+## Quick Start
+Clone the repository and navigate to this project:
 
-The **Extract, Load, Transform (ELT)** pipeline consists of the following stages:
+```bash
+git clone https://github.com/Pavankumarmanagoli/Projects.git
+cd "Projects/Dynamic Job Data Pipeline"
+```
 
-### 🟢 **1. Extract:**
-- Data pulled from **The Muse API** and **static datasets**.
-- Both real-time and historical job data collected.
+Prerequisites:
+- Docker and Docker Compose
+- Python 3.10+
+- Access to a Google Cloud project with BigQuery and Cloud Storage
+- A Muse API key stored in the `MUSE_API_KEY` environment variable
 
-### 🟡 **2. Load:**
-- Raw data loaded into **Google Cloud Storage (GCS)** buckets.
-- Data moved into **BigQuery** as a central repository.
+### 1. Launch Airbyte
+```bash
+cd airbyte
+tar -xzf abctl-v0.19.0-linux-amd64.tar.gz
+./abctl local install     # installs a local Airbyte instance
+```
 
-### 🔵 **3. Transform:**
-- **dbt** used for data cleaning, standardization, and schema structuring:
-  - **Datatype Conversion**
-  - **Null Value Imputation**
-  - **Unnesting of Array Fields**
-  - **Incremental Data Filtering** for daily updates
-  - **Union of Multiple Sources** for historical data
+### 2. Start Airflow
+```bash
+cd ../airflow
+docker-compose up -d   # starts the scheduler, webserver and dependencies
+```
+Use the helper script to run Airflow CLI commands:
+```bash
+./airflow.sh dags list
+```
 
----
+### 3. Run Spark Jobs
+Preprocess local JSON dumps and load historical records into BigQuery:
+```bash
+cd ../sparkjob
+spark-submit preprocessing_script.py
+spark-submit process_historic_data.py
+```
 
-## 💾 Data Warehouse & Transformation
+### 4. Trigger Pipelines
+The repository contains two DAGs:
+- `Daily_Job_Posting_Data_Management` – pulls new postings each day, loads them into BigQuery and runs dbt transformations.
+- `Historic_Job_Posting_Data_Management` – ingests full historical datasets and writes them to BigQuery.
 
-### **🔷 Google BigQuery:**
-- Chosen for its **scalability**, **high-performance querying**, and **cost-efficiency**.
-- Integration with GCP services allows seamless data flow.
-
-### **🟡 dbt (Data Build Tool):**
-- Modular and reusable SQL-based transformations.
-- Supports **version control** using Git.
-- Built-in **testing** and **data validation** features.
-- Simplifies the transformation logic while leveraging BigQuery's compute power.
-
----
-
-## 📈 Data Visualization
-
-**Looker** was used for creating interactive dashboards and reports to visualize job market trends.
-
-### 📊 **Dashboards Include:**
-- **Top Job Sectors** by location
-- **Hiring Trends** over time
-- **Salary Analysis** across industries
-- **Popular Skills** required by employers
-
----
-
-## ⏰ Automation with Airflow
-
-**Apache Airflow** was utilized to orchestrate the ELT pipeline.
-
-### 🔄 **Airflow Jobs:**
-- **Daily Job Posting Pipeline:**  
-  - Incremental extraction of new job postings.
-  - Data stored in a **Daily Job Posting** dataset.
-
-- **Historic Job Posting Pipeline:**  
-  - Full data extraction for historical analysis.
-  - Data stored in a **Historic Job Posting** dataset.
-
-### ⚡ **Airflow Features Implemented:**
-- **Task Scheduling** — Automated daily and historic data runs.
-- **Error Handling** — Built-in error detection and retry mechanisms.
-- **Scalable Workflows** — DAGs optimized for scalability and performance.
+Trigger a DAG from the Airflow UI or via CLI:
+```bash
+./airflow.sh dags trigger Daily_Job_Posting_Data_Management
+```
 
 ---
 
-## 🎯 Goals & Outcomes
+## Pipeline Components
+### Airbyte
+Manages source connectors and keeps configuration for repeatable ingestion of external APIs and files. The `abctl` CLI is bundled in the `airbyte` directory for local deployment.
 
-### 🎯 **Goals:**
-- Build a **fully automated** data pipeline.
-- Implement **scalable data transformations** using cloud resources.
-- Create **accessible data insights** for end-users.
-- Develop a **reusable ELT pipeline** for similar data projects.
+### Airflow
+DAGs reside under `airflow/dags` and encapsulate extraction, loading to GCS/BigQuery, and downstream dbt transformations. The `docker-compose.yaml` file provides a complete Airflow stack for local testing.
 
-### 🏆 **Outcomes:**
-- Achieved a **cloud-based, automated ELT pipeline**.
-- Enhanced **data accessibility** through Looker dashboards.
-- Optimized data transformations using **dbt** and **BigQuery**.
-- Built a **robust orchestration system** using Airflow.
+### Spark
+The `sparkjob` folder contains lightweight Spark scripts used to clean and append historical datasets before loading them into BigQuery.
 
 ---
 
-## 💡 Tech Stack
-
-| 🏗️ **Tool/Framework** | 💡 **Purpose**                     |
-|-----------------------|-----------------------------------|
-| **Google BigQuery**    | Data warehousing & storage       |
-| **dbt**                | Data transformation (SQL-based)  |
-| **Apache Airflow**     | Workflow orchestration           |
-| **Looker**             | Data visualization & reporting   |
-| **Google Cloud Storage** | Raw data storage               |
-| **Python**             | Data extraction scripts          |
-| **APIs & Static Datasets** | Data sources                  |
+## Project Layout
+```
+Readme.md
+airbyte/        # Airbyte CLI and configuration
+airflow/        # Airflow project: docker-compose, dags and dbt models
+sparkjob/       # Spark preprocessing and load scripts
+```
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License** — feel free to use, modify, and distribute it.
+## Technology Stack
+- **Airbyte** – pluggable data ingestion
+- **Apache Airflow** – workflow orchestration
+- **Apache Spark** – batch processing for large JSON feeds
+- **dbt** – SQL-based transformations in BigQuery
+- **Google Cloud Storage / BigQuery** – raw and curated data storage
+- **Python** – glue code and DAG logic
 
 ---
 
-### 🚀 **Happy Data Engineering!**
+## License
+This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.

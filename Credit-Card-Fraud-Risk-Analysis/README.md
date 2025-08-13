@@ -1,38 +1,45 @@
 # 💳 Credit Card Fraud Risk Analysis – Power BI Project
 
-Fraud detection is a growing challenge for banks and financial institutions as transaction volumes continue to rise. In this project, we analyze credit card transaction data to detect and assess fraud risk using Power BI. The dashboard provides a comprehensive view of fraud types, risk levels, and patterns across time, states, and merchant categories.
+## Overview
+Credit card fraud is a persistent threat for financial institutions as transaction volumes continue to grow.
+This project demonstrates how Power BI can be used to monitor, analyze, and respond to fraud using transaction data.
+The repository includes the raw dataset and an interactive dashboard that highlights fraud patterns across time, states, and merchant categories.
 
----
+## Features
 
-## 📊 Project Overview
+- **Fraud Summary Metrics**
+  - Fraud rate
+  - Number of fraudulent transactions
+  - Critical risk transactions
+  - Total value of fraudulent transactions
+  - Most frequent fraud type
+- **Interactive Visualizations**
+  - Fraud type by transaction category (bar chart)
+  - Risk level distribution (donut chart)
+  - Fraud by state (bar chart)
+  - Fraud by month (line chart)
+- **Flexible Filters**
+  - Fraud type
+  - State
+  - Merchant name
 
-This Power BI project demonstrates how financial institutions can leverage business intelligence to monitor, detect, and respond to credit card fraud. The solution includes data cleaning, exploratory data analysis (EDA), and the development of an interactive dashboard to help analysts identify high-risk transactions and fraud hotspots.
+## Dataset
+The file `Credit Card Fraud Risk Analysis.csv` contains anonymized credit card transactions with fraud labels and additional attributes for risk assessment.
 
-Using various filters and visualizations, the dashboard offers deep insights into fraudulent behavior across multiple dimensions such as fraud type, transaction category, state, and time of year. It is designed to support both high-level monitoring and detailed drill-down analysis for operational teams.
+## Dashboard
+Open `Credit Card Fraud Risk Analysis.pbix` in Power BI Desktop to explore the visualizations and filter the dataset based on your needs.
 
--
+## Usage
+1. Clone this repository or download the project files.
+2. Open the Power BI report (`.pbix` file) in Power BI Desktop.
+3. Refresh the data source if necessary and interact with the visuals using the filters provided.
 
-## ✅ Key Features
+## Project Structure
+```
+Credit-Card-Fraud-Risk-Analysis/
+├── Credit Card Fraud Risk Analysis.csv
+├── Credit Card Fraud Risk Analysis.pbix
+└── README.md
+```
 
-- **Fraud Summary Metrics**:  
-  - Fraud Rate  
-  - Number of Fraudulent Transactions  
-  - Critical Risk Transactions  
-  - Total Value of Fraudulent Transactions  
-  - Most Frequent Fraud Type  
-
-- **Interactive Visualizations**:
-  - **Fraud Type vs Transaction Category** (Bar chart)
-  - **Risk Level Distribution** (Donut chart)
-  - **Fraud by State** (Bar chart)
-  - **Fraud by Month** (Line chart)
-  
-- **Filter Panel**:  
-  Allows users to explore fraud data by:
-  - Fraud Type  
-  - State  
-  - Merchant Name
-
----
-
-This project is a real-world example of how Power BI can be used in the banking sector for risk analysis and fraud prevention. It highlights the power of visual analytics in understanding transactional anomalies and making data-driven decisions to safeguard financial systems.
+This project serves as a practical demonstration of applying business intelligence to enhance fraud detection and support data-driven decisions in the banking sector.
