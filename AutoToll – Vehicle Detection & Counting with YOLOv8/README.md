@@ -1,43 +1,72 @@
-# Vehicle Detector and Counter using YOLOv8
-This project is built to detect and count vehicles in a given video file or live video stream of a highway using YOLOv8. The program outputs a video file with the detected vehicles and the total count of vehicle Inflow and Outflow from the Tolling Booth. This project is also available as a [Kaggle Notebook](https://www.kaggle.com/code/shibinjudah/automatictollbooth#Output-Video). 
+## Project Objective
+Develop an automated toll monitoring system that uses YOLOv8 to detect vehicles in highway footage and track their direction to compute inflow and outflow counts at a toll booth.
 
-# Methodology
+## Overview
+AutoToll leverages the real-time object detection capabilities of [YOLOv8](https://github.com/ultralytics/ultralytics) to identify vehicles in video streams. Each frame is analysed to determine whether a vehicle crosses a reference line, enabling the project to maintain separate counts for inbound and outbound traffic. The repository provides a Jupyter Notebook that demonstrates the entire workflow and produces an annotated video summarising the traffic.
 
-1. Create a video object using OpenCV and read the video frame by frame.
-2. Scale down the video by a scaling factor for better performance. Default value is 50%.
-3. Use the YOLO model to predict the desired label IDs with a confidence value (preferably 70% or above).
-4. Extract bounding box coordinates, confidence values and class IDs from the prediction.
-5. Use the obtained information to draw bounding boxes along with their respective center points, and print the class and confidence values to each detected object.
-6. To identify traffic Inflow or Outflow:
-    * Draw a reference line at 3/4th of the frame. 
-    * This reference line plus an offset with be the region of interest to determine vehicle Inflow or Outlfow.
-    * Calculate the distance between the center of the bounding boxes and the reference line. Based on the polarity of the resulting distance, the overall inflow or the outflow count is recorded. 
-7. The count of individual types of inbound or outbound vehicles are also maintained using the above technique along with a dictionary of labels and their respective count on either side of the road.
+## Features
+- Detects multiple vehicle classes in recorded or live video.
+- Differentiates inbound and outbound traffic using a configurable reference line.
+- Produces an annotated output video and per-class counts.
 
-# Dependencies
+## Getting Started
+### Clone the repository
+```bash
+git clone https://github.com/Pavankumarmanagoli/Projects.git
+cd "Projects/AutoToll – Vehicle Detection & Counting with YOLOv8"
+```
 
-* OpenCV
-* Ultralytics
-* Yolo V8
-* Matplotlib
-* Seaborn
-* Numpy
-* Pandas
-* Ipython
+### Install dependencies
+Install the required Python packages. A virtual environment is recommended.
+```bash
+pip install ultralytics opencv-python numpy pandas matplotlib seaborn ipython
+```
 
-# Usage
-The notebook is divided into multiple sections and is well documented with necessary comments. Do check out the Kaggle notebook for the most recent version and dont forget to upvote if you found the project interesting!
+### Run the notebook
+Launch Jupyter Notebook and open `automatictollbooth.ipynb`. The notebook is organised into sections that:
+1. load the pretrained YOLOv8 model and the source video,
+2. process frames to detect and classify vehicles,
+3. update inflow/outflow counters and save an annotated video to `results/predicted_result.mp4`.
 
-# Results
-![Transformed Output Frame](https://github.com/shibinjudahpaul/OpenCV-Projects/blob/master/AutoTollBooth/results/final_result.jpg?raw=true)
+### Example script
+The core detection logic can also be used in a Python script:
+```python
+from ultralytics import YOLO
+import cv2
+
+model = YOLO("yolov8n.pt")
+cap = cv2.VideoCapture("input/highway.mp4")
+
+while cap.isOpened():
+    success, frame = cap.read()
+    if not success:
+        break
+    results = model(frame)[0]
+    cv2.imshow("AutoToll", results.plot())
+    if cv2.waitKey(1) == 27:  # press Esc to exit
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+```
+Replace `yolov8n.pt` with a custom model if training on specific data.
+
+## Methodology
+1. Capture and optionally resize each frame using OpenCV.
+2. Apply YOLOv8 to obtain bounding boxes, classes, and confidence scores.
+3. Compute the centre of each detection and draw bounding boxes.
+4. Compare the centre to a user-defined reference line to determine vehicle direction.
+5. Maintain per-class inflow and outflow counts with dictionaries.
+
+## Results
+![Transformed Output Frame](results/final_result.jpg)
 
 [Transformed Output Video](results/predicted_result.mp4)
 
-# Future improvements
-* Add total toll charges earned on each side of the road.
-* Add speed estimation.
-* Add pollution estimation.
-* Add most popular type of vehicle on each side of the road.
+## Future Work
+- Calculate total toll revenue for each direction.
+- Estimate vehicle speed and emission levels.
+- Identify the most common vehicle type per direction.
 
-# Conclusion
-Yolo V8 is here! This was a simple project to get my hands dirty with the new model. As the current SOTA model, YOLOv8 builds on the success of previous versions, introducing new features and improvements for enhanced performance, flexibility, and efficiency. It supports a full range of vision AI tasks, including detection, segmentation, pose estimation, tracking, and classification. This versatility is very exciting and I am looking forward to using it in more tasks. 
+## Conclusion
+YOLOv8 offers fast and accurate vehicle detection suitable for traffic analytics and automated tolling. AutoToll demonstrates how these capabilities can be integrated into a practical counting system and serves as a foundation for more advanced monitoring solutions.
