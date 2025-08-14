@@ -1,4 +1,4 @@
-[# Wind Speed Prediction using Interpretable Stacking Ensemble Machine Learning Algorithms
+Wind Speed Prediction using Interpretable Stacking Ensemble Machine Learning Algorithms
 
 ![Wind Speed Prediction](https://erepublic.brightspotcdn.com/dims4/default/16d0978/2147483647/strip/true/crop/4670x2435+0+282/resize/840x438!/quality/90/?url=http%3A%2F%2Ferepublic-brightspot.s3.amazonaws.com%2F01%2F8a%2F19eb46354206853cb37788374e41%2Fshutterstock-1454940068-1.jpg)
 
