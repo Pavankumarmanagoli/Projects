@@ -1,3 +1,5 @@
+# AutoToll – Vehicle Detection & Counting with YOLOv8
+
 ## Project Objective
 Develop an automated toll monitoring system that uses YOLOv8 to detect vehicles in highway footage and track their direction to compute inflow and outflow counts at a toll booth.
 
@@ -70,3 +72,4 @@ Replace `yolov8n.pt` with a custom model if training on specific data.
 
 ## Conclusion
 YOLOv8 offers fast and accurate vehicle detection suitable for traffic analytics and automated tolling. AutoToll demonstrates how these capabilities can be integrated into a practical counting system and serves as a foundation for more advanced monitoring solutions.
+
