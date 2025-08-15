@@ -11,7 +11,6 @@ This repository demonstrates an end-to-end analytics pipeline for Walmart sales 
 - Storage and querying in **Azure Synapse Analytics**
 - Interactive dashboards built with **Looker Studio** or **Power BI**
 
-![0](/images/0.png)
 
 ## Tech Stack
 
