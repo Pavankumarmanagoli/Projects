@@ -18,7 +18,7 @@ This repository demonstrates an end-to-end analytics pipeline for Walmart sales 
 - Azure Databricks (Apache Spark)
 - Azure Data Lake Storage Gen2
 - Azure Synapse Analytics
-- Looker Studio / Power BI
+- Power BI
 
 ## Getting Started
 
